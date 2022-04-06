@@ -1,0 +1,55 @@
+# Vi-specific bindings
+The Vi bindings start in "insert mode" allowing all of the shared commands listed above. If ^D is typed when the line is empty, it is treated as an EOF; otherwise, it is ignored. Pressing ESCAPE enters the "command mode" which provides all of the shared commands except for [printable char] and Tab, allowing instead the following commands:
+
+ - Key	Command
+ - i	enter insert mode
+ - I	enter insert mode at the start of the line
+ - a	enter insert mode after the current character
+ - A	enter insert mode at end of the line
+ - s	delete the char under the cursor and enter insert mode
+ - S	clear the line and enter insert mode
+ - r	replace one character
+ - R	replace many characters
+ - u	undo
+ - ^R	redo
+ - [n][movement]	do a movement, repeated n times
+ - [n]d[movement]	delete the characters the movement would move past
+ - [n]c[movement]	delete the characters the movement would move past, and enter insert mode
+ - [n]x	delete the character under the cursor (repeated n times)
+ - [n]X	delete the character before the cursor (repeated n times) (*)
+ - [n].	repeat the previous command n times (*)
+ - dd	delete the whole line
+ - cc	delete the whole line and enter insert mode
+ - D	delete until the end of the line (*)
+ - C	delete the rest of the line and enter insert mode (*)
+ - j	previous line in the history (*)
+ - k	next line in the history (*)
+ - p	paste after the cursor (*)
+ - P	paste before the cursor (*)
+ - /	search backwards through the history (*)
+ - ?	search forwards through the history (*)
+ - n	continue the current history search (*)
+ - N	reverse the current history search (*)
+ - ~	toggle case (*)
+ - ^W	erase previous word (*)
+ - ^D	enter, when the line is not empty (*)
+ - The movement commands are:
+ -
+ - Key	Command
+ - h	left one character
+ - l	right one character
+ - [space]	right one character
+ - 0	move to the start of the line
+ - $	move to the end of the line
+ - w	right one word
+ - b	left one word
+ - W	right one bigword
+ - B	left one bigword
+ - e	end of word (*)
+ - E	end of bigword (*)
+ - ^	first non-whitespace character in the line (*)
+ - f[c]	next appearance of character [c] (*)
+ - F[c]	previous appearance of character [c] (*)
+ - t[c]	to the left of the next appearance of character [c] (*)
+ - T[c]	to the left of the previous appearance of character [c] (*)
+ - %	jump to the brace matching the one under the cursor ((), {} or []) (*)

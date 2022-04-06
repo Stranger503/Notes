@@ -1,0 +1,36 @@
+<h1 id="encoding-videos-on-unix-systems">Encoding Videos on Unix Systems</h1>
+<hr />
+<h2 id="reduce-video-size-with-ffmpeg">Reduce Video size with <strong><em>FFMPEG</em></strong></h2>
+<p>We can encode any video into <strong>H.265</strong> because, * Better compression rate without losing quality.</p>
+<h2 id="step-1">Step 1</h2>
+<blockquote>
+<p><strong><em>ffmpeg -i input.mp4 -vcodec libx265 -crf 28 output.mp4</em></strong></p>
+</blockquote>
+<p>Thats it done….</p>
+<ul>
+<li><strong>crf 24</strong> would be a better balanced rate.</li>
+<li><em>Note that lower CRF values correspond to higher bitrates, and hence produce higher quality videos.</em></li>
+</ul>
+<p><strong>FFMPEG with GPU Encoding</strong></p>
+<ul>
+<li><em>ffmpeg -vsync 0 –hwaccel cuvid -c:v h265_cuvid -i input.mp4 -c:a copy -c:v h265_nvenc output.mkv</em></li>
+</ul>
+<p><strong>Mixing CPU and GPU processing</strong></p>
+<ul>
+<li><em>ffmpeg -vsync 0 -c:v h264_cuvid -i input.264 -vf “fade,hwupload_cuda,scale_npp=1280:720” -c:v h264_nvenc output.264</em></li>
+</ul>
+<p><strong>Multi-GPU</strong></p>
+<ul>
+<li><em>ffmpeg -vsync 0 -hwaccel cuvid -hwaccel_device 1 -c:v h264_cuvid -i input.mp4 -c:a copy -c:v h264_nvenc -b:v 5M output.mkv</em></li>
+</ul>
+<p><strong>Best Settings</strong></p>
+<ul>
+<li><em>ffmpeg -strict 2 -hwaccel auto -i “inputfile.mp4” -c:v hevc_nvenc -rc vbr -cq 24 -qmin 24 -qmax 24 -profile:v main10 -pix_fmt p010le -b:v 0K -c:a aac -map 0 “outputfile.mp4”</em></li>
+</ul>
+<h3 id="othertools">Othertools</h3>
+<ol type="1">
+<li>handbrake</li>
+<li>mkvmerge</li>
+</ol>
+<p><strong>Handbrak</strong></p>
+<p><em>HandBrakeCLI -i /file/input.mp4 -o /file/out.mp4 -E fdk_faac -B 96k -6 stereo -R 44.1 -e x264 -q 27 -x cabac=1:ref=5:analyse=0x133:me=umh:subme=9:chroma-me=1:deadzone-inter=21:deadzone-intra=11:b-adapt=2:rc-lookahead=60:vbv-maxrate=10000:vbv-bufsize=10000:qpmax=69:bframes=5:b-adapt=2:direct=auto:crf-max=51:weightp=2:merange=24:chroma-qp-offset=-1:sync-lookahead=2:psy-rd=1.00,0.15:trellis=2:min-keyint=23:partitions=all</em></p>

@@ -1,0 +1,20 @@
+---
+title: Sicp Notes
+author: "Mohammed Shahid"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+fontfamily: modern
+fontsize: 12pt
+documentclass: article
+classoption: a4paper
+output: pdf_document
+---
+**Prefix Notation**:Placing an operator to the left of the operands.
+
+**Advantages**:
+
+1. It can take any number of arguments for a procedure.
+```{scheme}
+(+ 10 23 88 123 908)
+
+```
+2. No Ambiguity

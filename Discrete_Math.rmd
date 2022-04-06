@@ -1,0 +1,11 @@
+---
+title: Discrete Mathematics
+output: pdf_document
+---
+
+What is a Proof?, Well i would ask why we need Proof?.
+
+To justify a proposition.
+
+So now what's a proposition actully why we need proposition.
+

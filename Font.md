@@ -1,0 +1,2 @@
+fontfamily: ebgaramond
+fontfamily: Alegreya
